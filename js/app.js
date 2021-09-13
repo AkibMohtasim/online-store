@@ -12,16 +12,45 @@ const showProducts = (products) => {
     const image = product.images;
     const div = document.createElement("div");
     div.classList.add("product");
+
+    /*
     div.innerHTML = `<div class="single-product">
       <div>
-    <img class="product-image" src=${image}></img>
+        <img class="product-image" src=${product.image}></img>
       </div>
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
+      <p>Avg rating: ${product.rating.rate}</p>
+      <p>Total vote: ${product.rating.count}</p>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <button id="details-btn" class="btn btn-danger">Details</button>
+      </div>
       `;
+      */
+
+      
+      div.innerHTML = `
+      <div class="card" style="width: 35rem;">
+        <img src=${product.image} class="card-img-top mx-auto" style="width: 50%; margin-top: 10px;">
+        <div class="card-body">
+          <h3 class="card-title">${product.title}</h3>
+          <p class="card-text"${product.category}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Avg rating: ${product.rating.rate}</li>
+          <li class="list-group-item">Total vote: ${product.rating.count}</li>
+        </ul>
+        <h2>Price: ${product.price}</h2>
+        <div class="card-body">
+          <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
+          <button id="details-btn" class="btn btn-danger">Details</button>
+        </div>
+      </div>
+      `;
+      
+
+
     document.getElementById("all-products").appendChild(div);
   }
 };
@@ -29,33 +58,38 @@ let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
   updatePrice("price", price);
-
+  updateTotal();  //bugFixed
   updateTaxAndCharge();
   document.getElementById("total-Products").innerText = count;
 };
 
+/*
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
-  const converted = parseInt(element);
+  const converted = parseFloat(element);
   return converted;
 };
+*/
 
 // main price update function
 const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
-  const convertPrice = parseFloat(value);
+  const convertPrice = parseFloat(value); //bugFixed
   const total = convertedOldPrice + convertPrice;
-  document.getElementById(id).innerText = Math.round(total);
+  document.getElementById(id).innerText = total.toFixed(2); //bug 
 };
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = Math.round(value);
+  document.getElementById(id).innerText = value.toFixed(2); //bug
 };
 
 // update delivery charge and total Tax
 const updateTaxAndCharge = () => {
   const priceConverted = getInputValue("price");
+  if (priceConverted <= 200) {
+    setInnerText("delivery-charge", 20);
+  }
   if (priceConverted > 200) {
     setInnerText("delivery-charge", 30);
     setInnerText("total-tax", priceConverted * 0.2);
@@ -70,11 +104,17 @@ const updateTaxAndCharge = () => {
   }
 };
 
+const getInputValue = (id) => {
+  const element = document.getElementById(id).innerText;
+  const converted = parseFloat(element);
+  return converted;
+};
+
 //grandTotal update function
 const updateTotal = () => {
   const grandTotal =
     getInputValue("price") + getInputValue("delivery-charge") +
     getInputValue("total-tax");
-  document.getElementById("total").innerText = grandTotal;
+  document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
 loadProducts();
