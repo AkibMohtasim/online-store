@@ -31,7 +31,7 @@ const showProducts = (products) => {
 
       
       div.innerHTML = `
-      <div class="card" style="width: 35rem;">
+      <div class="card w-75 single-product">
         <img src=${product.image} class="card-img-top mx-auto" style="width: 50%; margin-top: 10px;">
         <div class="card-body">
           <h3 class="card-title" id="product-title">${product.title}</h3>
@@ -56,13 +56,12 @@ const showProducts = (products) => {
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
-  //updateTotal();  //bugFixed
   updatePrice("price", price);
   updateTaxAndCharge();
   document.getElementById("total-Products").innerText = count;
 };
 
-
+//getting the values
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseFloat(element);
@@ -109,7 +108,7 @@ const updateTaxAndCharge = () => {
   setInnerText('total', grandTotal);
 };
 
-//grandTotal update function
+//grandTotal update function -- bug
 /*
 const updateTotal = () => {
   const grandTotal = getInputValue("price") + getInputValue("delivery-charge") + getInputValue("total-tax");
