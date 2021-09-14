@@ -35,7 +35,7 @@ const showProducts = (products) => {
         <img src=${product.image} class="card-img-top mx-auto" style="width: 50%; margin-top: 10px;">
         <div class="card-body">
           <h3 class="card-title" id="product-title">${product.title}</h3>
-          <p class="card-text"${product.category}</p>
+          <h5 class="card-text">Category: ${product.category}</h5>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Avg rating: ${product.rating.rate}</li>
