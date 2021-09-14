@@ -31,15 +31,15 @@ const showProducts = (products) => {
 
       
       div.innerHTML = `
-      <div class="card w-75 single-product">
+      <div class="card w-75" id="single-product">
         <img src=${product.image} class="card-img-top mx-auto" style="width: 50%; margin-top: 10px;">
         <div class="card-body">
           <h3 class="card-title" id="product-title">${product.title}</h3>
           <h5 class="card-text">Category: ${product.category}</h5>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Avg rating: ${product.rating.rate}</li>
-          <li class="list-group-item">Total vote: ${product.rating.count}</li>
+        <ul class="list-group mx-auto">
+          <li class="list-group-item" style="background-image: linear-gradient(45deg, grey, rgba(0,0,0, 0.7)); color: white;">Average rating: ${product.rating.rate}</li>
+          <li class="list-group-item" style="background-image: linear-gradient(45deg, grey, rgba(0,0,0, 0.7)); color: white;">Total vote: ${product.rating.count}</li>
         </ul>
         <h2>Price: $${product.price}</h2>
         <div class="card-body">
