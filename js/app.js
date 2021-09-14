@@ -31,7 +31,7 @@ const showProducts = (products) => {
 
       
       div.innerHTML = `
-      <div class="card w-75" id="single-product">
+      <div class="card w-75 single-product border-0 rounder" >
         <img src=${product.image} class="card-img-top mx-auto" style="width: 50%; margin-top: 10px;">
         <div class="card-body">
           <h3 class="card-title" id="product-title">${product.title}</h3>

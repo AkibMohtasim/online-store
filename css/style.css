@@ -48,17 +48,16 @@ body {
   margin-top: 30px;
 }
 
-#single-product {
+.single-product {
   background-image: linear-gradient(150deg, transparent, rgba(255, 255, 255, 0.575),  rgba(150, 31, 31, 0.459));
   border: none;
   border-radius: 3px;
   height: 700px;
-  /* border: 5px solid black; */
   padding: 15px;
   transition: 0.4s;
   margin: 5px;
 }
-#single-product:hover {
+.single-product:hover {
   box-shadow: 10px 7px 7px gray;
   border-radius: 10px;
   /* border: 1px solid rgb(107, 155, 155); */
